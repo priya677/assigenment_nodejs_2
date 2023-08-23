@@ -24,7 +24,7 @@ const initializeDbAndServer = async () => {
   }
 };
 
-initializeDBAndServer();
+initializedbAndServer();
 
 //GETTING USER ID
 
@@ -270,12 +270,11 @@ app.delete(
     const { userId } = request;
     const getTheTweetQuery = `SELECT * FROM tweet WHERE user_id='${userId}' AND tweet_id='${tweetId}';`;
     const tweet = await db.get(getTheTweetQuery);
-    console.log(tweet);
     if (tweet === undefined) {
       response.status(401);
       response.send("Invalid Request");
     } else {
-      const deleteTweetQuery = `DELETE FROM tweet WHERE user_id='${tweetId}';`;
+      const deleteTweetQuery = `DELETE FROM tweet WHERE tweet_id='${tweetId}';`;
       await db.run(deleteTweetQuery);
       response.send("Tweet Removed");
     }
